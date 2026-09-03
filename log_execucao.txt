@@ -1,0 +1,125 @@
+
+######################################################################
+# Sintese de imagens: cena 3D -> imagem
+# 01_sintese_imagens/raytracer.py
+######################################################################
+====================================================================
+AREA 1 - SINTESE DE IMAGENS  (cena 3D  ->  imagem)
+====================================================================
+Cena: 4 esferas | Resolucao: 480x270 | Profundidade max: 8
+  spp=  1  tempo=  0.17s  (  1.0x o custo de 1 spp)
+  spp=  4  tempo=  0.59s  (  3.5x o custo de 1 spp)
+  spp= 16  tempo=  2.35s  ( 13.9x o custo de 1 spp)
+  spp= 64  tempo=  9.51s  ( 56.4x o custo de 1 spp)
+
+Arquivos gerados em 01_sintese_imagens/saida/:
+  - cena_gabarito.json
+  - comparacao_amostragem.png
+  - detalhe_aliasing.png
+  - render_001spp.png
+  - render_004spp.png
+  - render_016spp.png
+  - render_064spp.png
+  - render_referencia.png
+
+Observacao para o relatorio: o tempo cresce de forma aproximadamente linear
+com spp, enquanto o ruido cai com 1/sqrt(spp). Esse e' o compromisso central
+da sintese por Monte Carlo.
+
+[ok] 01_sintese_imagens/raytracer.py concluido em 27.6s
+
+######################################################################
+# Processamento de imagens: imagem -> imagem
+# 02_processamento_imagens/processamento.py
+######################################################################
+====================================================================
+AREA 2 - PROCESSAMENTO DE IMAGENS  (imagem  ->  imagem)
+====================================================================
+Entrada: render do ray tracer (Area 1)  |  shape=(270, 480, 3)
+  [1/5] 01_histograma_equalizacao.png
+  [2/5] 02_ruido_e_filtros.png  (+ metricas.csv)
+  [3/5] 03_convolucao_sobel.png
+  [4/5] 04_dominio_frequencia.png
+  [5/5] 05_morfologia.png
+
+Metricas de restauracao (PSNR maior = melhor):
+  ruido           filtro             PSNR (dB)     SSIM
+  gaussiano       sem filtro             22.33   0.2863
+  gaussiano       media 5x5              29.67   0.8020
+  gaussiano       gaussiano s=1.5        30.36   0.8296
+  gaussiano       mediana 5x5            30.05   0.7572
+  sal e pimenta   sem filtro             17.19   0.2718
+  sal e pimenta   media 5x5              27.23   0.6564
+  sal e pimenta   gaussiano s=1.5        27.73   0.6965
+  sal e pimenta   mediana 5x5            33.51   0.9463
+
+Diferenca maxima entre filtrar no espaco e na frequencia: 0.00001
+Isso confirma na pratica o teorema da convolucao.
+
+[ok] 02_processamento_imagens/processamento.py concluido em 4.1s
+
+######################################################################
+# Visao computacional: imagem -> descricao
+# 03_visao_computacional/visao.py
+######################################################################
+====================================================================
+AREA 3 - VISAO COMPUTACIONAL  (imagem  ->  descricao / modelo)
+====================================================================
+Entrada: render_referencia.png  shape=(270, 480, 3)
+A cena 3D original NAO e' fornecida ao algoritmo; o gabarito so e' usado
+para medir o erro no final.
+
+[A] Transformada de Hough encontrou 3 circulo(s).
+    objeto              gabarito (cx,cy,r)        estimado                    erro c  erro r
+    esfera_metal        (141, 135, 47)            (136, 140, 53)                 6.8     5.7
+    esfera_vermelha     (240, 135, 47)            (240, 136, 48)                 1.0     0.7
+    esfera_ouro_fosco   (339, 135, 47)            (344, 138, 51)                 5.5     3.7
+    Erro medio de centro: 4.43 px (0.92% da largura)
+
+[B] ORB: 756 pontos na vista 1, 671 na vista 2.
+    Casamentos apos o teste de razao de Lowe: 460
+    Inliers do RANSAC: 430 (93% dos casamentos)
+    Erro medio de reprojecao dos cantos: 1.11 px
+
+Arquivos gerados em 03_visao_computacional/saida/:
+  - 01_deteccao_hough.png
+  - 02_casamento_orb.png
+  - 03_homografia_ransac.png
+  - descricao_da_cena.json
+
+Repare no formato de descricao_da_cena.json: numeros e rotulos, nao pixels.
+Essa e' a diferenca essencial em relacao a Area 2.
+
+[ok] 03_visao_computacional/visao.py concluido em 1.1s
+
+######################################################################
+# Visualizacao computacional: dados -> imagem
+# 04_visualizacao_computacional/visualizacao.py
+######################################################################
+====================================================================
+AREA 4 - VISUALIZACAO COMPUTACIONAL  (dados  ->  imagem)
+====================================================================
+Volume escalar: shape=(96, 96, 96)  dtype=float32  884,736 voxels
+  min=0.000  media=0.237  max=1.000
+Nenhuma cor, nenhuma opacidade, nenhuma geometria: so numeros.
+
+  [1/4] 01_fatias_ortogonais.png
+  [2/4] 02_mapas_de_cores.png
+  [3/4] 03_funcoes_de_transferencia.png
+  [4/4] 04_isosuperficies.png
+
+Malhas extraidas por marching cubes:
+   isovalor    vertices   triangulos
+       0.45       8,572       17,136
+       0.65       3,226        6,440
+       0.85         746        1,484
+
+Repare: o isovalor e' uma ESCOLHA. Baixa-lo engloba o ruido de fundo,
+subi-lo esconde estrutura real. Nao existe render 'correto' aqui, existe
+um mapeamento defensavel.
+
+[ok] 04_visualizacao_computacional/visualizacao.py concluido em 3.0s
+
+======================================================================
+TUDO CONCLUIDO em 35.8s
+======================================================================

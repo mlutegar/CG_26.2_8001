@@ -1,0 +1,9 @@
+ruido,filtro,PSNR_dB,SSIM
+gaussiano,sem filtro,22.33,0.2863
+gaussiano,media 5x5,29.67,0.802
+gaussiano,gaussiano s=1.5,30.36,0.8296
+gaussiano,mediana 5x5,30.05,0.7572
+sal e pimenta,sem filtro,17.19,0.2718
+sal e pimenta,media 5x5,27.23,0.6564
+sal e pimenta,gaussiano s=1.5,27.73,0.6965
+sal e pimenta,mediana 5x5,33.51,0.9463

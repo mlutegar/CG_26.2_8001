@@ -1,0 +1,47 @@
+{
+  "resolucao": [
+    480,
+    270
+  ],
+  "camera": {
+    "origem": [
+      0.0,
+      0.35,
+      1.35
+    ],
+    "alvo": [
+      0.0,
+      0.0,
+      -1.2
+    ],
+    "vup": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "vfov_graus": 58.0
+  },
+  "esferas_projetadas": [
+    {
+      "nome": "esfera_vermelha",
+      "cx": 240.0,
+      "cy": 135.0,
+      "raio_px": 47.3,
+      "material": "lambertiano"
+    },
+    {
+      "nome": "esfera_metal",
+      "cx": 140.6,
+      "cy": 135.0,
+      "raio_px": 47.3,
+      "material": "metal"
+    },
+    {
+      "nome": "esfera_ouro_fosco",
+      "cx": 339.4,
+      "cy": 135.0,
+      "raio_px": 47.3,
+      "material": "metal"
+    }
+  ]
+}

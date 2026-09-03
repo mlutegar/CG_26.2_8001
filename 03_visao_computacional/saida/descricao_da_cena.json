@@ -1,0 +1,99 @@
+{
+  "entrada": "render_referencia.png",
+  "deteccao_objetos": {
+    "metodo": "cv2.HoughCircles (HOUGH_GRADIENT)",
+    "objetos_encontrados": 3,
+    "comparacao_com_gabarito": [
+      {
+        "objeto": "esfera_metal",
+        "material": "metal",
+        "gabarito": [
+          140.6,
+          135.0,
+          47.3
+        ],
+        "estimado": [
+          136.0,
+          140.0,
+          53.0
+        ],
+        "erro_centro_px": 6.79,
+        "erro_raio_px": 5.7
+      },
+      {
+        "objeto": "esfera_vermelha",
+        "material": "lambertiano",
+        "gabarito": [
+          240.0,
+          135.0,
+          47.3
+        ],
+        "estimado": [
+          240.0,
+          136.0,
+          48.0
+        ],
+        "erro_centro_px": 1.0,
+        "erro_raio_px": 0.7
+      },
+      {
+        "objeto": "esfera_ouro_fosco",
+        "material": "metal",
+        "gabarito": [
+          339.4,
+          135.0,
+          47.3
+        ],
+        "estimado": [
+          344.0,
+          138.0,
+          51.0
+        ],
+        "erro_centro_px": 5.49,
+        "erro_raio_px": 3.7
+      }
+    ]
+  },
+  "geometria_entre_vistas": {
+    "metodo": "ORB + BFMatcher(Hamming) + razao de Lowe + RANSAC",
+    "keypoints_vista1": 756,
+    "keypoints_vista2": 671,
+    "casamentos": 460,
+    "inliers_ransac": 430,
+    "H_real": [
+      [
+        0.7842,
+        0.2397,
+        49.4337
+      ],
+      [
+        -0.2397,
+        0.7842,
+        104.6758
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "H_estimada": [
+      [
+        0.7926,
+        0.2532,
+        47.0671
+      ],
+      [
+        -0.2395,
+        0.7908,
+        104.4292
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "erro_reprojecao_px": 1.111
+  }
+}
