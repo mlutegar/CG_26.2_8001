@@ -35,10 +35,12 @@ AC02 - TRANSFORMACOES GEOMETRICAS 2D  (coordenadas homogeneas)
 
 [Ex10] Composicao no retangulo A(1,1) B(5,1) C(5,3) D(1,3):
        translacao (-2,3) -> escala (1.5, 0.5) -> reflexao no eixo y
-    novos vertices = (1.5, 2), (-4.5, 2), (-4.5, 3), (1.5, 3)
+    apos translacao = (-1, 4), (3, 4), (3, 6), (-1, 6)
+    apos escala     = (-1.5, 2), (4.5, 2), (4.5, 3), (-1.5, 3)
+    apos reflexao   = (1.5, 2), (-4.5, 2), (-4.5, 3), (1.5, 3)
 
 ======================================================================
 10 figuras geradas em AC02_transformacoes_geometricas/saida/
 ======================================================================
 
-[ok] transformacoes.py concluido em 2.6s
+[ok] transformacoes.py concluido em 1.9s

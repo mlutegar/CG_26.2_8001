@@ -1,0 +1,8 @@
+# AC1 - Computacao Visual
+# Instale com:  pip install -r AC1/requirements.txt
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.6
+scikit-image>=0.20
+opencv-python>=4.7
+pillow>=9.0

@@ -6,6 +6,6 @@
 **Passos:** `(4,1)` → `(−1,4)` → **P'(−2, 8)**.
 Confirmado pela matriz única `M = M3 @ M2 @ M1`.
 
-Figura: `AC02_transformacoes_geometricas/saida/ex09_composicao_ponto.png`
+![[ex09_composicao_ponto.png]]
 
 Anterior: [[Ex08-Cisalhamento]] · Próximo: [[Ex10-Composicao-Retangulo]]

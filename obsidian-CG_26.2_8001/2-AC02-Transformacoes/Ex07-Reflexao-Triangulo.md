@@ -5,6 +5,6 @@
 **Enunciado:** triângulo `A(2,3) B(4,3) C(3,5)`, reflexão no eixo x.
 **Resposta:** **A(2,−3) B(4,−3) C(3,−5)** (só o sinal de y muda).
 
-Figura: `AC02_transformacoes_geometricas/saida/ex07_reflexao_triangulo.png`
+![[ex07_reflexao_triangulo.png]]
 
 Anterior: [[Ex06-Reflexao-Ponto]] · Próximo: [[Ex08-Cisalhamento]]

@@ -1,0 +1,4 @@
+# AC2 - Transformacoes Geometricas 2D
+# Instale com:  pip install -r AC2/requirements.txt
+numpy>=1.24
+matplotlib>=3.6

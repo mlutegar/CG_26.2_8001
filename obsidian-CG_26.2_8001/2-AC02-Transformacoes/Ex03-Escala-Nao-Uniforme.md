@@ -5,6 +5,6 @@
 **Enunciado:** triângulo do [[Ex02-Escala-Uniforme|Ex2]], `sx=2`, `sy=0.5`.
 **Resposta:** **A(2, 0.5) B(6, 0.5) C(4, 2)** — estica em x, achata em y.
 
-Figura: `AC02_transformacoes_geometricas/saida/ex03_escala_nao_uniforme.png`
+![[ex03_escala_nao_uniforme.png]]
 
 Anterior: [[Ex02-Escala-Uniforme]] · Próximo: [[Ex04-Rotacao-Ponto]]

@@ -5,6 +5,6 @@
 **Enunciado:** `P(2,5)`, reflexão no eixo y.
 **Resposta:** **P'(−2, 5)** (só o sinal de x muda).
 
-Figura: `AC02_transformacoes_geometricas/saida/ex06_reflexao_ponto.png`
+![[ex06_reflexao_ponto.png]]
 
 Anterior: [[Ex05-Rotacao-Quadrado]] · Próximo: [[Ex07-Reflexao-Triangulo]]

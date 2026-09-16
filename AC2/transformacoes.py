@@ -20,6 +20,7 @@ Execucao:
 """
 
 import os
+import shutil
 
 import matplotlib
 matplotlib.use("Agg")  # renderiza sem display, salvando PNGs
@@ -28,6 +29,26 @@ import numpy as np
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SAIDA = os.path.join(AQUI, "saida")
+# Pasta de imagens do vault Obsidian (para os embeds ![[...]] das notas).
+# Fica fora de AC2/; so' e' preenchida se o vault existir.
+VAULT_IMG = os.path.join(AQUI, "..", "obsidian-CG_26.2_8001",
+                         "2-AC02-Transformacoes", "img")
+
+
+def sincronizar_obsidian():
+    """Copia os PNGs de saida/ para a pasta img/ do vault, se ele existir,
+    mantendo os embeds das notas sempre atualizados."""
+    vault_pai = os.path.dirname(os.path.dirname(VAULT_IMG))
+    if not os.path.isdir(vault_pai):
+        return  # sem vault: nada a fazer
+    os.makedirs(VAULT_IMG, exist_ok=True)
+    n = 0
+    for nome in sorted(os.listdir(SAIDA)):
+        if nome.endswith(".png"):
+            shutil.copy2(os.path.join(SAIDA, nome),
+                         os.path.join(VAULT_IMG, nome))
+            n += 1
+    print(f"Sincronizadas {n} figuras para o vault Obsidian (img/).")
 
 
 # ---------------------------------------------------------------------------
@@ -130,6 +151,51 @@ def plot_formas(orig, transf, titulo, arquivo, ponto=False, rotulos=None):
     return arquivo
 
 
+def plot_passos(estagios, titulo, arquivo, ponto=False, rotulos=None):
+    """Plota varios estagios de uma composicao, cada um numa cor.
+
+    estagios: lista de (nome, pontos). O primeiro e' o original; os demais,
+    cada transformacao acumulada. Desenha todos no mesmo grafico com cores
+    distintas e ligacao tracejada leve entre estagios (para pontos).
+    """
+    fig, ax = plt.subplots(figsize=(6.5, 6.5))
+    cores = plt.cm.viridis(np.linspace(0, 0.9, len(estagios)))
+
+    for i, (nome, pts) in enumerate(estagios):
+        pts = np.atleast_2d(np.asarray(pts, dtype=float))
+        cor = cores[i]
+        estilo = "-o" if i == 0 else "--s"
+        if ponto:
+            ax.scatter(pts[:, 0], pts[:, 1], s=90, color=cor,
+                       label=nome, zorder=3)
+            ax.annotate(nome, pts[0], textcoords="offset points",
+                        xytext=(8, 8), color=cor, fontsize=8)
+        else:
+            fechado = _fechar(pts)
+            ax.plot(fechado[:, 0], fechado[:, 1], estilo, color=cor,
+                    label=nome, alpha=0.9)
+            if rotulos:
+                for (x, y), r in zip(pts, rotulos):
+                    ax.annotate(r, (x, y), textcoords="offset points",
+                                xytext=(5, 5), color=cor, fontsize=8)
+
+    # liga a trajetoria do(s) ponto(s) entre estagios
+    if ponto:
+        traj = np.array([np.atleast_2d(p)[0] for _, p in estagios])
+        ax.plot(traj[:, 0], traj[:, 1], ":", color="gray", lw=1, zorder=1)
+
+    ax.axhline(0, color="gray", lw=0.8)
+    ax.axvline(0, color="gray", lw=0.8)
+    ax.set_aspect("equal", adjustable="datalim")
+    ax.grid(True, linestyle=":", alpha=0.6)
+    ax.set_title(titulo)
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(os.path.join(SAIDA, arquivo), dpi=110)
+    plt.close(fig)
+    return arquivo
+
+
 def _fmt(pts):
     """Formata coordenadas para impressao."""
     pts = np.atleast_2d(np.asarray(pts, dtype=float))
@@ -227,7 +293,11 @@ def ex09():
     # equivalente por matriz unica:
     M = M3 @ M2 @ M1
     print(f"    (matriz unica M = M3@M2@M1 confirma P' = {_fmt(aplicar(M, P))})")
-    plot_formas(P, p3, "Ex9 - Composicao (transl -> rot90 -> escala2)",
+    plot_passos([("P (original)", P),
+                 ("1) translacao (1,-1)", p1),
+                 ("2) rotacao 90", p2),
+                 ("3) escala 2 = P'", p3)],
+                "Ex9 - Composicao passo a passo",
                 "ex09_composicao_ponto.png", ponto=True)
 
 
@@ -238,10 +308,17 @@ def ex10():
     M1 = translacao(-2, 3)
     M2 = escala(1.5, 0.5)
     M3 = reflexao_y()
-    M = M3 @ M2 @ M1
-    Rl = aplicar(M, R)
-    print(f"    novos vertices = {_fmt(Rl)}")
-    plot_formas(R, Rl, "Ex10 - Composicao no retangulo",
+    r1 = aplicar(M1, R)
+    r2 = aplicar(M2, r1)
+    r3 = aplicar(M3, r2)
+    print(f"    apos translacao = {_fmt(r1)}")
+    print(f"    apos escala     = {_fmt(r2)}")
+    print(f"    apos reflexao   = {_fmt(r3)}")
+    plot_passos([("original", R),
+                 ("1) transl (-2,3)", r1),
+                 ("2) escala (1.5,0.5)", r2),
+                 ("3) reflexao y", r3)],
+                "Ex10 - Composicao passo a passo",
                 "ex10_composicao_retangulo.png", rotulos=["A", "B", "C", "D"])
 
 
@@ -261,7 +338,8 @@ def main():
     ex09()
     ex10()
     print("\n" + "=" * 70)
-    print("10 figuras geradas em AC02_transformacoes_geometricas/saida/")
+    print("10 figuras geradas em AC2/saida/")
+    sincronizar_obsidian()
     print("=" * 70)
 
 

@@ -1,8 +1,11 @@
-# AC01 - Computacao Visual
-# Instale com:  pip install -r requirements.txt
-numpy>=1.24
-scipy>=1.10
-matplotlib>=3.6
-scikit-image>=0.20
-opencv-python>=4.7
-pillow>=9.0
+# CG_26.2_8001 - dependencias por atividade
+#
+# Cada atividade tem seu proprio requirements.txt. A AC2 usa apenas
+# numpy + matplotlib; a AC1 precisa tambem de scipy, scikit-image, OpenCV e Pillow.
+#
+#   pip install -r AC1/requirements.txt     # Computacao Visual
+#   pip install -r AC2/requirements.txt     # Transformacoes Geometricas
+#
+# Para instalar tudo de uma vez, este arquivo agrega ambos:
+-r AC1/requirements.txt
+-r AC2/requirements.txt
