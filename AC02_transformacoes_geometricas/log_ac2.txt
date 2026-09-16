@@ -1,0 +1,44 @@
+======================================================================
+AC02 - TRANSFORMACOES GEOMETRICAS 2D  (coordenadas homogeneas)
+======================================================================
+
+[Ex1] Translacao simples  P(2,3) + vetor (4,-2)
+    P' = (6, 1)  (ambas as coordenadas mudam: x+4, y-2)
+
+[Ex2] Escala uniforme fator 2  no triangulo A(1,1) B(3,1) C(2,4)
+    novos vertices = (2, 2), (6, 2), (4, 8)
+    A area cresce por fator 2^2 = 4 (escala linear ao quadrado).
+
+[Ex3] Escala nao uniforme  sx=2, sy=0.5  no triangulo do Ex2
+    novos vertices = (2, 0.5), (6, 0.5), (4, 2)
+
+[Ex4] Rotacao de P(1,0) em 90 graus anti-horario em torno da origem
+    P' = (6.12323e-17, 1)
+
+[Ex5] Rotacao 45 graus HORARIO do quadrado A(1,1) B(1,4) C(4,4) D(4,1)
+    novos vertices = (1.41421, 0), (3.53553, 2.12132), (5.65685, 0), (3.53553, -2.12132)
+
+[Ex6] Reflexao de P(2,5) em relacao ao eixo y
+    P' = (-2, 5)
+
+[Ex7] Reflexao no eixo x do triangulo A(2,3) B(4,3) C(3,5)
+    novos vertices = (2, -3), (4, -3), (3, -5)
+
+[Ex8] Cisalhamento horizontal k=2 em P(2,3)   (x' = x + k*y)
+    P' = (8, 3)
+
+[Ex9] Composicao em P(3,2): translacao (1,-1) -> rot 90 anti-h -> escala 2
+    apos translacao = (4, 1)
+    apos rotacao    = (-1, 4)
+    apos escala P'  = (-2, 8)
+    (matriz unica M = M3@M2@M1 confirma P' = (-2, 8))
+
+[Ex10] Composicao no retangulo A(1,1) B(5,1) C(5,3) D(1,3):
+       translacao (-2,3) -> escala (1.5, 0.5) -> reflexao no eixo y
+    novos vertices = (1.5, 2), (-4.5, 2), (-4.5, 3), (1.5, 3)
+
+======================================================================
+10 figuras geradas em AC02_transformacoes_geometricas/saida/
+======================================================================
+
+[ok] transformacoes.py concluido em 2.6s

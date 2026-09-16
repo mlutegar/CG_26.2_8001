@@ -1,3 +1,18 @@
+# CG_26.2_8001 — Computação Gráfica
+
+Repositório da disciplina. Contém duas atividades:
+
+- **AC01 — Computação Visual** (síntese, processamento, visão, visualização).
+- **AC02 — Transformações Geométricas 2D** (`AC02_transformacoes_geometricas/`):
+  10 exercícios de translação, escala, rotação, reflexão, cisalhamento e
+  composições, resolvidos com matrizes homogêneas e Matplotlib. Rode com
+  `python AC02_transformacoes_geometricas/transformacoes.py` (ou
+  `executar_ac2.py` para gravar o log). Relatório: `relatorio/AC02_relatorio.md`.
+
+Anotações interligadas em `obsidian-CG_26.2_8001/` (abra a pasta no Obsidian).
+
+---
+
 # AC01 — Computação Visual
 
 Material completo do Estudo Dirigido 01: relatório em Markdown e quatro
