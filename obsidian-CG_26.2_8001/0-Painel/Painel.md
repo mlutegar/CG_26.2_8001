@@ -6,6 +6,14 @@ tópico; as notas são interligadas por wikilinks.
 ## Atividades
 - [[AC01]] — Áreas da Computação Visual (síntese, processamento, visão, visualização)
 - [[AC02]] — Transformações Geométricas 2D
+- [[AC03]] — Transformações 2D e 3D no Blender 4.5 LTS
+
+## Tópicos AC03
+- [[Cena-2D]]
+- [[Cena-3D]]
+- [[Animacao-Keyframes]]
+- [[Script-Python]]
+- [[Questoes-Teoricas]]
 
 ## Tópicos AC02
 - [[Ex01-Translacao]]

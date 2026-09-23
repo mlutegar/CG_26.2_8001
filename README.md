@@ -19,6 +19,11 @@ CG_26.2_8001/
 │   ├── executar_ac2.py
 │   ├── relatorio/AC02_relatorio.md
 │   └── saida/                    10 figuras (uma por exercício)
+├── AC3/                          Transformações 2D e 3D no Blender 4.5 LTS
+│   ├── enunciado.md
+│   ├── README.md
+│   ├── AC03_parque_geometrico.py
+│   └── relatorio/AC03_relatorio.md
 └── AP1/                          (a definir)
     └── enunciado.md
 ```
@@ -30,6 +35,9 @@ CG_26.2_8001/
 - **AC2 — Transformações Geométricas 2D**: 10 exercícios (translação, escala,
   rotação, reflexão, cisalhamento, composições) com matrizes homogêneas e
   Matplotlib. `python AC2/transformacoes.py`.
+- **AC3 — Transformações 2D e 3D no Blender 4.5 LTS**: cena "Parque Geométrico"
+  com objetos 2D/3D, animação por keyframes e automação em Python. Rodar
+  `AC3/AC03_parque_geometrico.py` na aba Scripting do Blender.
 - **AP1**: enunciado ainda não definido.
 
 ## Instalação
