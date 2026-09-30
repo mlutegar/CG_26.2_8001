@@ -45,8 +45,9 @@ Saída em `AP1/saida/`. As imagens também são copiadas para o vault Obsidian
 - Auxiliares: `Aux_Chao` + `Aux_Bloco_01..05` (a "construção" da marca).
 - **Cam_Principal** com *Track To* mirando a palavra — **não animada**, pronta p/ AP2.
 - Timeline **360 frames @ 24 fps** + 3 marcadores de storyboard.
-- **Cores por objeto** e render em **Workbench (solid)** das 4 imagens de
-  viewport + salvamento do `.blend`.
+- Apresentação em **Material Preview** (Eevee + materiais simples das cores +
+  mundo/sol de preview): enquadramento principal, 3 closes dos objetos e uma
+  **vista geral** (ângulo alternativo) + salvamento do `.blend`.
 
 > Materiais, iluminação, animação, composição/acabamento e render final **não**
 > fazem parte da AP1 — ficam para a **AP2** (ver a pasta `../AP2/`).

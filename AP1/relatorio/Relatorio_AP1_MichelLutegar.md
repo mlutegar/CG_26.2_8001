@@ -76,10 +76,24 @@ estruturar a composição:
   foguete em diagonal de decolagem, braços do robô abertos) e **Escala**
   (proporção de cada objeto e da palavra), organizando o equilíbrio da cena 3D.
 
+* **Resumo por objeto (técnicas de modelagem):**
+
+  | Objeto | Técnicas empregadas |
+  |---|---|
+  | `Palavra_Ibmec` | texto (Krub) → malha, **extrusão**, **bevel** + esfera (pingo) |
+  | `Obj_Robo` | primitivas (cubos/cilindros/esfera), **inset** (rosto/peito), **loop cut** (boca), **bevel**, **join** |
+  | `Obj_Computador` | **inset** (tela) + **loop cuts** (teclas), **bevel**, **join** |
+  | `Obj_Foguete` | cilindro + cone + aletas + bocal, **inset** (janela), **bevel** (mod.), **join** |
+  | `Aux_Bloco_*` | cubos + **bevel** (mod.) |
+
 ### 5. Organização Técnica da Cena
 * **Estrutura de Coleções:** todos os elementos estão agrupados na coleção
   principal `AP1_Ibmec_Conceito`, com subcoleções **Palavra**, **Objetos** e
   **Auxiliares**.
+* **Hierarquia no Outliner:** cada objeto autoral é um **Empty** com o corpo e as
+  subpartes nomeadas como filhos — `Obj_Robo` (→ `Obj_Robo_Corpo`,
+  `Obj_Robo_Olhos`, `Obj_Robo_Peito`), `Obj_Computador` (→ `..._Corpo`, `_Tela`,
+  `_Mouse`), `Obj_Foguete` (→ `..._Corpo`).
 * **Configuração da Câmera:** câmera principal `Cam_Principal` posicionada e
   enquadrada no elemento principal (constraint *Track To* mirando a palavra);
   pronta para receber a animação na AP2 (não animada nesta etapa).
@@ -153,11 +167,13 @@ Marcadores no `.blend`: `Inicio` (f1) · `Transformacao` (f73) · `Encerramento`
 - **Arquivo .blend:** `AP1_MichelLutegar.blend` — salvo no Blender 4.5 LTS. ✅
 - **Coleção/organização:** todos os objetos em `AP1_Ibmec_Conceito`
   (Palavra/Objetos/Auxiliares), com nomes coerentes. ✅
-- **Imagem do enquadramento principal** (Workbench/solid):
+- **Imagem do enquadramento principal** (Material Preview):
   ![Enquadramento principal](../saida/enquadramento_principal.png)
 - **Três capturas dos objetos autorais:**
   ![Robô](../saida/obj_robo.png)
   ![Computador](../saida/obj_computador.png)
   ![Foguete](../saida/obj_foguete.png)
+- **Vista geral** (ângulo alternativo da composição 3D):
+  ![Vista geral](../saida/vista_geral.png)
 - **Storyboard** com 3 momentos (Parte 2 acima). ✅
 - **Timeline** 360 frames @ 24 fps. ✅

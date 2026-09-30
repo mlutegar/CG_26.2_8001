@@ -27,7 +27,7 @@ CG_26.2_8001/
 ├── AP1/                          Cena-conceito 3D "Ibmec" (Blender 4.5 LTS)
 │   ├── enunciado.md · README.md · ap1_ibmec_conceito.py · assets/
 │   ├── relatorio/Relatorio_AP1_MichelLutegar.md  (relatório + storyboard)
-│   └── saida/                    .blend + 4 imagens viewport (Workbench)
+│   └── saida/                    .blend + 5 imagens (Material Preview)
 └── AP2/                          Peça final animada (evolução da AP1)
     ├── enunciado.md · README.md · ap2_ibmec_final.py · _render_capas.py
     ├── relatorio/AP2_relatorio.md
@@ -46,7 +46,7 @@ CG_26.2_8001/
   `AC3/AC03_parque_geometrico.py` na aba Scripting do Blender.
 - **AP1 — Cena-conceito 3D "Ibmec: Construindo o Futuro" (Blender 4.5 LTS)**:
   palavra Ibmec + 3 objetos autorais (robô, computador, foguete), câmera (não
-  animada) e timeline de 360 frames @ 24 fps, em **Workbench solid**. Rodar
+  animada) e timeline de 360 frames @ 24 fps, em **Material Preview**. Rodar
   `blender --background --python AP1/ap1_ibmec_conceito.py` (ver `AP1/README.md`).
 - **AP2 — Peça final animada (evolução da AP1)**: importa a cena da AP1 e adiciona
   animação, iluminação, materiais/texturas, acabamento e render do vídeo

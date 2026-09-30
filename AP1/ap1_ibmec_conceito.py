@@ -176,6 +176,35 @@ def _bbox_mundo(objs):
     return (min(xs), max(xs), min(ys), max(ys), min(zs), max(zs))
 
 
+def _bbox_grupo(obj):
+    """bbox do objeto incluindo seus filhos-malha (para grupos em Empty)."""
+    malhas = [o for o in [obj] + list(obj.children_recursive) if o.type == "MESH"]
+    return _bbox_mundo(malhas or [obj])
+
+
+def _agrupar_empty(nome, corpo, subpartes, col):
+    """Cria um Empty 'nome' e torna corpo + subpartes filhos nomeados (hierarquia
+    no Outliner). O corpo e' renomeado para '<nome>_Corpo'. Preserva a pose."""
+    membros = [corpo] + list(subpartes)
+    poses = {o: o.matrix_world.copy() for o in membros}
+    for o in subpartes:                       # solta parentescos antigos
+        o.parent = None
+    corpo.name = nome + "_Corpo"
+    empty = bpy.data.objects.new(nome, None)
+    empty.empty_display_type = "PLAIN_AXES"
+    empty.empty_display_size = 0.6
+    col.objects.link(empty)
+    empty.location = poses[corpo].translation
+    bpy.context.view_layer.update()
+    for o in membros:
+        o.parent = empty
+        o.matrix_parent_inverse = empty.matrix_world.inverted()
+        o.matrix_world = poses[o]
+        mover_para(o, col)
+    bpy.context.view_layer.update()
+    return empty
+
+
 def _texto_krub_bmec():
     """Cria 'bmec' em Krub (extrusao+bevel) e converte em malha, alinhado
     a esquerda/baseline (mesma orientacao das malhas do logo: altura em Y)."""
@@ -525,16 +554,18 @@ def criar_robo(col):
         sub.matrix_parent_inverse = robo.matrix_world.inverted()
         mover_para(sub, col)
 
-    # ATRAS da palavra "ibmec"; assentado no chao (tamanho moderado)
-    robo.scale = (1.1, 1.1, 1.1)
+    # ATRAS da palavra "ibmec"; assentado no chao (menor -> nao compete c/ a marca)
+    robo.scale = (0.92, 0.92, 0.92)
     bpy.context.view_layer.update()
     x0, x1, y0, y1, z0, z1 = _bbox_mundo([robo])
     robo.location.x += (0.0 - (x0 + x1) / 2.0)   # centralizado em X
-    robo.location.y += (3.4 - (y0 + y1) / 2.0)   # atras da palavra (y positivo)
+    robo.location.y += (3.9 - (y0 + y1) / 2.0)   # bem atras da palavra
     robo.location.z += (0.0 - z0)                # base no chao
     mover_para(robo, col)
     bpy.context.view_layer.update()
-    return robo
+
+    # hierarquia no Outliner: Obj_Robo (Empty) -> corpo + olhos + emblema
+    return _agrupar_empty("Obj_Robo", robo, (obj_olhos, emblema), col)
 
 
 def _cubo(dims, centro, nome):
@@ -621,7 +652,10 @@ def criar_computador(col):
     comp.location = (-4.9, 2.2, ZM)
     comp.rotation_euler = (0, 0, math.radians(22))   # 3/4 para a camera
     mover_para(comp, col)
-    return comp
+    bpy.context.view_layer.update()
+
+    # hierarquia: Obj_Computador (Empty) -> corpo + tela + mouse
+    return _agrupar_empty("Obj_Computador", comp, (tela, mouse), col)
 
 
 def criar_foguete(col):
@@ -685,7 +719,10 @@ def criar_foguete(col):
     obj.scale = (1.5, 1.5, 1.5)
     cor(obj, VERMELHO)
     mover_para(obj, col)
-    return obj
+    bpy.context.view_layer.update()
+
+    # hierarquia: Obj_Foguete (Empty) -> corpo
+    return _agrupar_empty("Obj_Foguete", obj, (), col)
 
 
 def criar_auxiliares(col):
@@ -756,21 +793,64 @@ def configurar_timeline_e_marcadores():
 
 
 # --------------------------------------------------------------------------
-# Render da cena-conceito (Workbench / solid) - entrega da AP1
+# Render da cena-conceito (Material Preview) - entrega da AP1
 # --------------------------------------------------------------------------
-def configurar_workbench():
-    """Shading solido (Workbench) com cores por objeto: entrega da AP1 em
-    viewport/solid mode (materiais, luz e render final ficam para a AP2)."""
+def _mat_de_cor(nome, rgba, emis=0.0):
+    mat = bpy.data.materials.new(nome)
+    mat.use_nodes = True
+    b = mat.node_tree.nodes.get("Principled BSDF")
+    b.inputs["Base Color"].default_value = rgba
+    b.inputs["Roughness"].default_value = 0.5
+    if emis > 0 and "Emission Color" in b.inputs:
+        b.inputs["Emission Color"].default_value = rgba
+        b.inputs["Emission Strength"].default_value = emis
+    return mat
+
+
+def aplicar_materiais_preview():
+    """Cria materiais simples a partir da cor de cada objeto (apresentacao em
+    Material Preview). Olhos/emblema ganham leve emissao."""
+    for o in list(bpy.data.objects):
+        if o.type != "MESH" or o.data.materials:
+            continue
+        rgba = tuple(o.color)
+        emis = 2.0 if ("Olho" in o.name or "Peito" in o.name) else 0.0
+        o.data.materials.append(_mat_de_cor("Mat_" + o.name, rgba, emis))
+
+
+def configurar_material_preview():
+    """Eevee + mundo claro (ambiente) + sol suave: look de 'Material Preview'
+    (mais rico que Solid). Iluminacao/render final ficam para a AP2."""
     scn = bpy.context.scene
-    scn.render.engine = "BLENDER_WORKBENCH"
+    for engine in ("BLENDER_EEVEE_NEXT", "BLENDER_EEVEE"):
+        try:
+            scn.render.engine = engine
+            break
+        except TypeError:
+            continue
     scn.render.resolution_x = 1280
     scn.render.resolution_y = 720
     scn.render.image_settings.file_format = "PNG"
-    shd = scn.display.shading
-    shd.light = "STUDIO"
-    shd.color_type = "OBJECT"
-    shd.show_shadows = True
-    shd.show_cavity = True
+    try:
+        scn.eevee.taa_render_samples = 48
+        scn.eevee.use_shadows = True
+    except AttributeError:
+        pass
+    # mundo claro (preenchimento ambiente, estilo material preview)
+    if scn.world is None:
+        scn.world = bpy.data.worlds.new("World")
+    scn.world.use_nodes = True
+    bg = scn.world.node_tree.nodes.get("Background")
+    if bg:
+        bg.inputs["Color"].default_value = (0.32, 0.34, 0.40, 1.0)
+        bg.inputs["Strength"].default_value = 1.0
+    # sol suave (forma/sombra do preview)
+    sol_data = bpy.data.lights.new("Luz_Preview", type="SUN")
+    sol_data.energy = 2.2
+    sol = bpy.data.objects.new("Luz_Preview", sol_data)
+    scn.collection.objects.link(sol)
+    sol.rotation_euler = (math.radians(55), math.radians(12), math.radians(35))
+    aplicar_materiais_preview()
 
 
 def render_para(caminho):
@@ -794,12 +874,18 @@ def render_entregaveis(cam, alvo, objetos):
         ("obj_foguete.png", objetos["foguete"], Vector((0.0, -7.5, 2.5))),
     ]
     for arquivo, obj, offset in closes:
-        x0, x1, y0, y1, z0, z1 = _bbox_mundo([obj])
+        x0, x1, y0, y1, z0, z1 = _bbox_grupo(obj)
         centro = Vector(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2))
         alvo.location = centro
         cam.location = centro + offset
         bpy.context.view_layer.update()
         render_para(os.path.join(SAIDA, arquivo))
+
+    # 3) vista geral (angulo diferente, aereo-lateral) da composicao 3D
+    alvo.location = Vector((0.0, 0.8, 1.2))
+    cam.location = Vector((9.0, -8.0, 7.5))
+    bpy.context.view_layer.update()
+    render_para(os.path.join(SAIDA, "vista_geral.png"))
 
     # restaura o enquadramento principal
     cam.location = loc_cam_orig
@@ -866,7 +952,7 @@ def main():
     criar_auxiliares(col_aux)
     cam, alvo = criar_camera(raiz, alvo_loc=(0.0, 0.0, 2.0))  # nao animada
 
-    configurar_workbench()
+    configurar_material_preview()
     render_entregaveis(cam, alvo, {"robo": robo, "computador": computador,
                                    "foguete": foguete})
     sincronizar_obsidian()
