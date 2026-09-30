@@ -1,0 +1,7 @@
+# Backups automáticos do Blender
+*.blend1
+*.blend2
+
+# Caches / temporários
+__pycache__/
+*.pyc

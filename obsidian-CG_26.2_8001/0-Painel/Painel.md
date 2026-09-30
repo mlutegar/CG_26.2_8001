@@ -7,6 +7,17 @@ tópico; as notas são interligadas por wikilinks.
 - [[AC01]] — Áreas da Computação Visual (síntese, processamento, visão, visualização)
 - [[AC02]] — Transformações Geométricas 2D
 - [[AC03]] — Transformações 2D e 3D no Blender 4.5 LTS
+- [[AP1]] — Cena-conceito 3D "Ibmec: Construindo o Futuro" (Blender 4.5 LTS)
+- [[AP2]] — Peça final animada (evolução da AP1)
+
+## Tópicos AP1
+- [[AP1]] — nota principal
+- [[Objetos-Autorais]]
+- [[AP1-Storyboard]]
+- [[Plano-AP2]]
+
+## Tópicos AP2
+- [[AP2]] — nota principal (animação, iluminação, materiais, render)
 
 ## Tópicos AC03
 - [[Cena-2D]]
