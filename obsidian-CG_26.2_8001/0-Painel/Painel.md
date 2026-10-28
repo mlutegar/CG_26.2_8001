@@ -10,6 +10,13 @@ tópico; as notas são interligadas por wikilinks.
 - [[AP1]] — Cena-conceito 3D "Ibmec: Construindo o Futuro" (Blender 4.5 LTS)
 - [[AP2]] — Peça final animada (evolução da AP1)
 
+- [[AC04]] — Lambert × Phong × Blinn-Phong na cena da AP1
+
+## Tópicos AC04
+- [[AC04-Materiais]]
+- [[AC04-Iluminacao]]
+- [[AC04-Comparacao]]
+
 ## Tópicos AP1
 - [[AP1]] — nota principal
 - [[Objetos-Autorais]]
