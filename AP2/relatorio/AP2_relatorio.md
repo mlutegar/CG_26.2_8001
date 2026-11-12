@@ -133,10 +133,10 @@ Mapas: cor base em sRGB; rugosidade e normal em Non-Color; normal passando pelo 
 | `brown_planks_03` (1K) | Poly Haven, https://polyhaven.com/a/brown_planks_03 | Rob Tuytel | CC0 | Madeira do computador |
 | `studio_small_08` (HDRI 1K) | Poly Haven, https://polyhaven.com/a/studio_small_08 | Sergej Majboroda | CC0 | Reflexos (só raios glossy) |
 | `Metal009` (1K) | ambientCG, https://ambientcg.com/a/Metal009 | ambientCG | CC0 | Metal do foguete |
-| Fonte **Krub** | Google Fonts | Cadson Demak | SIL Open Font License 1.1 | Letras "bmec" da palavra, recriadas na AP1 |
+| Fonte **Krub SemiBold** (`Krub-SemiBold.ttf`) | Google Fonts, https://fonts.google.com/specimen/Krub | Cadson Demak | SIL Open Font License 1.1 (o arquivo de licença não está no repositório; confirmar na aba License da página da fonte) | Letras "bmec" da palavra, criadas na AP1 como texto e convertidas em malha |
 | Logotipo `LOGO_IBMEC_3D.blend` | Material da disciplina/marca Ibmec | Ibmec | Marca registrada; uso acadêmico | Malhas do "I" e do ponto laranja (AP1) |
 
-Observação: a pasta `AP1/assets/fonts/` contém arquivos da família **Lagu Sans**, fonte original do logotipo. Ela não foi usada na renderização (as letras "bmec" foram recriadas em Krub) e não tenho a licença dela identificada, por isso não é citada como recurso utilizado. Texturas e HDRI são CC0 e não exigem atribuição, mas ela é dada. Detalhes em `AC5/texturas/FONTES.md`. **Sem áudio**: o vídeo não tem trilha de som.
+Observação: as letras "bmec" são malhas, então o `.blend` da AP2 não depende da fonte instalada (a AP1 referenciava `Krub-SemiBold.ttf` em `%LOCALAPPDATA%\Microsoft\Windows\Fonts`). A pasta `AP1/assets/fonts/` contém arquivos da família **Lagu Sans**, fonte original do logotipo. Ela não foi usada na renderização (modo "B" da AP1, com "bmec" em Krub) e a licença dela não está identificada, por isso não é citada como recurso utilizado. Texturas e HDRI são CC0 e não exigem atribuição, mas ela é dada. Detalhes em `AC5/texturas/FONTES.md`. **Sem áudio**: o vídeo não tem trilha de som.
 
 ## 8. Entregáveis
 
