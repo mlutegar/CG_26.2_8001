@@ -11,6 +11,11 @@ tópico; as notas são interligadas por wikilinks.
 - [[AP2]] — Peça final animada (evolução da AP1)
 
 - [[AC04]] — Lambert × Phong × Blinn-Phong na cena da AP1
+- [[AC05]] — Materiais PBR e texturas na cena da AP1
+
+## Tópicos AC05
+- [[AC05-Materiais]]
+- [[AC05-Texturas-UV]]
 
 ## Tópicos AC04
 - [[AC04-Materiais]]

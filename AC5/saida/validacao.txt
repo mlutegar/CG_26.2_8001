@@ -1,0 +1,91 @@
+=======================================================================================================
+VALIDACAO AC05  (AC05_MichelLutegar.blend)
+=======================================================================================================
+
+[Objeto]
+  OK     Obj_Robo_Corpo: material MAT_Espelho_PBR                        MAT_Espelho_PBR
+  OK     Obj_Robo_Corpo: Principled BSDF                                 
+  OK     Obj_Computador_Corpo: material MAT_Madeira_PBR                  MAT_Madeira_PBR
+  OK     Obj_Computador_Corpo: Principled BSDF                           
+  OK     Obj_Foguete_Corpo: material MAT_Metal_Escovado_PBR              MAT_Metal_Escovado_PBR
+  OK     Obj_Foguete_Corpo: Principled BSDF                              
+  OK     Palavra_Ibmec: material MAT_Ibmec_PBR                           MAT_Ibmec_PBR
+  OK     Palavra_Ibmec: Principled BSDF                                  
+  OK     Palavra_Ponto_i: material MAT_Ibmec_Ponto_PBR                   MAT_Ibmec_Ponto_PBR
+  OK     Palavra_Ponto_i: Principled BSDF                                
+
+[PBR]
+  OK     MAT_Espelho_PBR: Metallic = 1                                   1.0
+  OK     MAT_Espelho_PBR: Roughness 0..0.05                              0.019999999552965164
+  OK     MAT_Espelho_PBR: Base Color clara                               (0.95, 0.95, 0.95)
+  OK     MAT_Madeira_PBR: Metallic = 0                                   0.0
+  OK     MAT_Metal_Escovado_PBR: Metallic = 1                            1.0
+  OK     MAT_Metal_Escovado_PBR: Roughness 0.3..0.5 (Map Range, clamp)   0.30..0.50
+
+[Mapas]
+  OK     MAT_Madeira_PBR: Base Color <- Image Texture                    
+  OK     MAT_Madeira_PBR: Roughness <- Image Texture                     
+  OK     MAT_Madeira_PBR: Normal <- Normal Map                           
+  OK     MAT_Madeira_PBR: Normal Map em Tangent Space                    TANGENT
+  OK     MAT_Madeira_PBR: Normal Map <- Image Texture                    
+  OK     MAT_Madeira_PBR: Texture Coordinate (UV) + Mapping              
+  OK     MAT_Metal_Escovado_PBR: Base Color <- Image Texture             
+  OK     MAT_Metal_Escovado_PBR: Roughness <- Image Texture              
+  OK     MAT_Metal_Escovado_PBR: Normal <- Normal Map                    
+  OK     MAT_Metal_Escovado_PBR: Normal Map em Tangent Space             TANGENT
+  OK     MAT_Metal_Escovado_PBR: Normal Map <- Image Texture             
+  OK     MAT_Metal_Escovado_PBR: Texture Coordinate (UV) + Mapping       
+
+[Colorspace]
+  OK     madeira_basecolor (cor)                                         sRGB (esperado sRGB)
+  OK     madeira_roughness (dados)                                       Non-Color (esperado Non-Color)
+  OK     madeira_normal (normal)                                         Non-Color
+  OK     metal_basecolor (cor)                                           sRGB (esperado sRGB)
+  OK     metal_roughness (dados)                                         Non-Color (esperado Non-Color)
+  OK     metal_normal (normal)                                           Non-Color
+
+[UV]
+  OK     Obj_Computador_Corpo: UV layer                                  UV_AC05
+  OK     Obj_Computador_Corpo: Normal Map aponta para UV existente       UV_AC05
+  OK     Obj_Foguete_Corpo: UV layer                                     UV_AC05
+  OK     Obj_Foguete_Corpo: Normal Map aponta para UV existente          UV_AC05
+  OK     foguete: seams marcadas (arestas de emenda atras e aletas)      187 arestas
+
+[Imagens]
+  OK     madeira_basecolor: empacotada                                   1024x1024
+  OK     madeira_normal: empacotada                                      1024x1024
+  OK     madeira_roughness: empacotada                                   1024x1024
+  OK     metal_basecolor: empacotada                                     1024x1024
+  OK     metal_normal: empacotada                                        1024x1024
+  OK     metal_roughness: empacotada                                     1024x1024
+  OK     6 imagens de textura em uso                                     6
+  OK     HDRI hdri_studio_small_08 empacotado                            
+  OK     nenhum caminho quebrado                                         
+
+[Ibmec]
+  OK     Palavra_Ibmec: sem textura/normal/bump                          
+  OK     Palavra_Ibmec: Metallic 0, Roughness moderada                   rough=0.45
+  OK     Palavra_Ponto_i: sem textura/normal/bump                        
+  OK     Palavra_Ponto_i: Metallic 0, Roughness moderada                 rough=0.45
+  OK     azul da marca preservado                                        
+  OK     laranja do ponto preservado                                     
+
+[Cena]
+  OK     camera principal definida                                       
+  OK     luzes da AC04 (Sol + Area)                                      
+  OK     faixas Refletor_* removidas (sem auxiliares)                    
+  OK     motor de render salvo = Cycles                                  CYCLES
+
+[World]
+  OK     Mix Shader com fator Light Path > Is Glossy Ray                 
+  OK     entrada 0 (camera/difuso) = cinza da AC04 (0.32, 0.34, 0.40)    (0.32, 0.34, 0.4)
+  OK     entrada 1 (glossy) = Environment Texture com HDRI               hdri_studio_small_08
+  OK     HDRI empacotado                                                 
+
+-------------------------------------------------------------------------------------------------------
+TOTAL: 62/62 verificacoes OK
+=======================================================================================================
+Blender 4.5.14 LTS (hash 62c1db4208e8 built 2026-09-15 01:33:49)
+Read blend: "C:\Users\mlute\PycharmProjects\CG_26.2_8001\AC5\AC05_MichelLutegar.blend"
+
+Blender quit

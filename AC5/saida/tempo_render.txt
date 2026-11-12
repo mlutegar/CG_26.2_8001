@@ -1,0 +1,1 @@
+Eevee 1920x1080: 1.8 s | Cycles 1920x1080 96 amostras (CPU, denoise): 88.3 s
