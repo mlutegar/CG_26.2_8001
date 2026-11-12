@@ -14,6 +14,6 @@ Detalhes completos (Parte 2): `AP1/relatorio/Relatorio_AP1_MichelLutegar.md`.
 
 ## Peça animada
 A animação final (blocos → palavra sobe + pingo encaixa → foguete decola, câmera
-aproximando) é a **AP2**: `AP2/saida/AP2_animacao.mp4`. Ver [[AP2]].
+aproximando) é a **AP2**: `AP2/AP2_MichelLutegar.mp4`. Storyboard atualizado: [[AP2-Storyboard]]. Ver [[AP2]].
 
 Ligação com [[Plano-AP2]]: os 3 momentos definem os keyframes mestres.

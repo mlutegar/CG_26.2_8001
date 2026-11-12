@@ -8,7 +8,7 @@ tópico; as notas são interligadas por wikilinks.
 - [[AC02]] — Transformações Geométricas 2D
 - [[AC03]] — Transformações 2D e 3D no Blender 4.5 LTS
 - [[AP1]] — Cena-conceito 3D "Ibmec: Construindo o Futuro" (Blender 4.5 LTS)
-- [[AP2]] — Peça final animada (evolução da AP1)
+- [[AP2]] — Ibmec em 15 segundos (animação final)
 
 - [[AC04]] — Lambert × Phong × Blinn-Phong na cena da AP1
 - [[AC05]] — Materiais PBR e texturas na cena da AP1
@@ -29,7 +29,18 @@ tópico; as notas são interligadas por wikilinks.
 - [[Plano-AP2]]
 
 ## Tópicos AP2
-- [[AP2]] — nota principal (animação, iluminação, materiais, render)
+- [[AP2]] — nota principal
+- [[AP2-Diagnostico]]
+- [[AP2-Script-Base]]
+- [[AP2-Animacao]]
+- [[AP2-Iluminacao-Render]]
+- [[AP2-Storyboard]]
+- [[AP2-Relatorio]]
+
+### Entregáveis AP2
+- Relatório: `AP2/relatorio/AP2_relatorio.md` ([[AP2-Relatorio]])
+- Vídeo: `AP2/AP2_MichelLutegar.mp4`
+- Storyboard: `AP2/storyboard/AP2_storyboard.png` ([[AP2-Storyboard]])
 
 ## Tópicos AC03
 - [[Cena-2D]]

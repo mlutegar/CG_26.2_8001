@@ -5,3 +5,10 @@
 # Caches / temporários
 __pycache__/
 *.pyc
+
+# AP2: sequencias pesadas (fora do repositorio)
+AP2/saida/frames/
+AP2/saida/teste_rapido/
+AP2/saida/_tmp/
+
+AP2/saida/log_*.txt
